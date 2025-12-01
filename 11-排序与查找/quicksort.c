@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define LEN 8
-int a[LEN] = { 5, 2, 0, 1, 6, 0, 9, 3 };
+#define LEN 100010
+int a[LEN];
 
 void swap(int *x, int *y) {
   int temp = *x;
@@ -22,18 +22,24 @@ int partition(int start, int end) {
   return i + 1;
 }
 
-void quicksort(int start, int end) {
+void sort(int start, int end) {
   int mid;
   if (start < end) {
     mid = partition(start, end);
-    quicksort(start, mid - 1);
-    quicksort(mid + 1, end);
+    sort(start, mid - 1);
+    sort(mid + 1, end);
   }
 }
 
 int main() {
-  quicksort(0, LEN - 1);
-  printf("%d %d %d %d %d %d %d %d\n",
-      a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7]);
+  int n;
+  scanf("%d", &n);
+  for (int i = 0; i < n; i++) {
+    scanf("%d", &a[i]);
+  }
+  sort(0, n - 1);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", a[i]);
+  }
   return 0;
 }
